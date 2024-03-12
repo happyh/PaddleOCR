@@ -1422,7 +1422,7 @@ class MainWindow(QMainWindow):
     def scrollRequest(self, delta, orientation):
         units = - delta / (8 * 15)
         bar = self.scrollBars[orientation]
-        bar.setValue(bar.value() + bar.singleStep() * units)
+        bar.setValue(int(bar.value() + bar.singleStep() * units))
 
     def setZoom(self, value):
         self.actions.fitWidth.setChecked(False)
@@ -2204,7 +2204,7 @@ class MainWindow(QMainWindow):
                     msg = 'Can not recognise the detection box in ' + self.filePath + '. Please change manually'
                     QMessageBox.information(self, "Information", msg)
                     return
-                result = self.ocr.ocr(img_crop, cls=True, det=False)[0]
+                result = self.ocr.ocr(img_crop, cls=True, det=False)
                 if result[0][0] != '':
                     if shape.line_color == DEFAULT_LOCK_COLOR:
                         shape.label = result[0][0]

@@ -40,7 +40,7 @@ class Worker(QThread):
                     if self.model == 'paddle':
                         h, w, _ = cv2.imdecode(np.fromfile(Imgpath, dtype=np.uint8), 1).shape
                         if h > 32 and w > 32:
-                            self.result_dic = self.ocr.ocr(Imgpath, cls=True, det=True)[0]
+                            self.result_dic = self.ocr.ocr(Imgpath, cls=True, det=True)
                         else:
                             print('The size of', Imgpath, 'is too small to be recognised')
                             self.result_dic = None
@@ -51,11 +51,12 @@ class Worker(QThread):
                         pass
                     else:
                         strs = ''
+                        print(self.result_dic)
                         for res in self.result_dic:
                             chars = res[1][0]
                             cond = res[1][1]
                             posi = res[0]
-                            strs += "Transcription: " + chars + " Probability: " + str(cond) + \
+                            strs += "Transcription: " + str(chars) + " Probability: " + str(cond) + \
                                     " Location: " + json.dumps(posi) +'\n'
                         # Sending large amounts of data repeatedly through pyqtSignal may affect the program efficiency
                         self.listValue.emit(strs)
