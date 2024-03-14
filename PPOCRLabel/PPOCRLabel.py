@@ -109,7 +109,7 @@ class MainWindow(QMainWindow):
 
         if os.path.exists('./data/paddle.png'):
             result = self.ocr.ocr('./data/paddle.png', cls=True, det=True)
-            result = self.table_ocr('./data/paddle.png', return_ocr_result_in_table=True)
+#            result = self.table_ocr('./data/paddle.png', return_ocr_result_in_table=True)
 
         # For loading all image under a directory
         self.mImgList = []
@@ -1151,6 +1151,7 @@ class MainWindow(QMainWindow):
         shape_index = 0
         for label, points, line_color, key_cls, difficult in shapes:
             shape = Shape(label=label, line_color=line_color, key_cls=key_cls)
+            print("len(points)=",len(points),",points=",points)
             for x, y in points:
 
                 # Ensure the labels are within the bounds of the image. If not, fix them.

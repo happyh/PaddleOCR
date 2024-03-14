@@ -1,5 +1,7 @@
 [English](README.md) | 简体中文
 
+2.7版本 需要使用python3.11
+
 # PPOCRLabelv2
 
 PPOCRLabel是一款适用于OCR领域的半自动化图形标注工具，内置PP-OCR模型对数据自动标注和重新识别。使用Python3和PyQT5编写，支持矩形框标注、表格标注、不规则文本标注、关键信息标注模式，导出格式可直接用于PaddleOCR检测和识别模型的训练。
